@@ -1,8 +1,7 @@
-import { Injectable, UseGuards } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DriverEntity } from 'src/domain/driver/entities/driver.entity';
 import { Repository } from 'typeorm';
-import { IsAuthGuard } from '../auth/guards/isAuth.guard';
+import { DriverEntity } from './entities/driver.entity';
 import { IDriver, IDriverCreate } from './interfaces/driver.interfaces';
 
 @Injectable()
@@ -13,7 +12,9 @@ export class DriverService {
   ) {}
 
   async findOne(id: number): Promise<IDriver> {
-    return this.driversRepository.findOneOrFail(id);
+    return this.driversRepository.findOneOrFail({
+      where: { id },
+    });
   }
 
   async createDriver(createDriverInput: IDriverCreate): Promise<IDriver> {

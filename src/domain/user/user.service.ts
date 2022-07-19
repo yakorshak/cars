@@ -4,6 +4,7 @@ import { Repository } from 'typeorm';
 import { UserEntity } from './entities/user.entity';
 import { IUser, IUserCreate } from './interfaces/user.interfaces';
 import * as bcrypt from 'bcrypt';
+import { RolesEnum } from '../authorization/roles.enum';
 
 // регистрация
 // хешировать пароль (bcrypt)
@@ -20,6 +21,7 @@ export class UserService {
     const hashPassword = await bcrypt.hashSync(password, 7);
     input.password = hashPassword;
     const user = await this.userRepository.create(input);
+    user.roles = [RolesEnum.ADMIN];
     const createdUser = await this.userRepository.save(user);
     return createdUser;
   }

@@ -5,6 +5,8 @@ import { IUser } from 'src/domain/user/interfaces/user.interfaces';
 import { UserService } from 'src/domain/user/user.service';
 import { UserModel } from '../commons/user.model';
 import { CreateUserInput } from '../dto/create-user.input';
+import { RolesEnum } from 'src/domain/authorization/roles.enum';
+import { Roles } from 'src/domain/authorization/roles.decorator';
 
 @Resolver()
 export class UserResolver {

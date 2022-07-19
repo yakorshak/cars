@@ -10,4 +10,7 @@ export class UserModel {
 
   @Field()
   password: string;
+
+  @Field()
+  roles: string[];
 }

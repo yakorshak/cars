@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { Args, Int } from '@nestjs/graphql';
 import { InjectRepository } from '@nestjs/typeorm';
-import { DriverService } from 'src/domain/driver/driver.service';
 import { CarEntity } from 'src/domain/car/entities/car.entity';
 import { Repository } from 'typeorm';
+import { DriverService } from '../driver/driver.service';
 import { IDriver } from '../driver/interfaces/driver.interfaces';
 import { ICar, ICarCreate, ICarUpdateData } from './interfaces/car.interfaces';
 
@@ -26,8 +26,11 @@ export class CarService {
     return this.carsRepository.save(newCar);
   }
 
+  // here was id
   async getCar(id: number): Promise<ICar> {
-    return this.carsRepository.findOneOrFail(id);
+    return this.carsRepository.findOneOrFail({
+      where: { id },
+    });
   }
 
   async getDrivers(

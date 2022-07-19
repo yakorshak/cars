@@ -3,14 +3,12 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { CarModule } from './domain/car/car.module';
-import { DriverEntity } from './domain/driver/entities/driver.entity';
-import { CarEntity } from './domain/car/entities/car.entity';
 import { GraphqlModule } from './api/graphql/graphql.module';
 import { ShopModule } from './domain/shop/shop.module';
-import { ShopEntity } from './domain/shop/entities/shop.entity';
 import { DriverModule } from './domain/driver/driver.module';
 import { AuthModule } from './domain/auth/auth.module';
 import { UserModule } from './domain/user/user.module';
+import { AuthorizationModule } from './domain/authorization/authorization.module';
 
 @Module({
   imports: [
@@ -31,6 +29,7 @@ import { UserModule } from './domain/user/user.module';
     ShopModule,
     AuthModule,
     UserModule,
+    AuthorizationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
